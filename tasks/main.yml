@@ -8,7 +8,16 @@
   vars:
     packages:
       - prometheus-node-exporter
+  when: ansible_os_family == "Debian"
 
+- name: install pkgs
+  community.general.pkgng:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - node_exporter
+  when: ansible_os_family == "FreeBSD"
 
 
 
